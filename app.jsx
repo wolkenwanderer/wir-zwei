@@ -1037,6 +1037,7 @@ function Slider({ label, value, onChange, min = 1, max = 10, suffix }) {
       </div>
       <input id={id} type="range" min={min} max={max} value={value}
         onChange={(e) => onChange(Number(e.target.value))}
+        onClick={(e) => onChange(Number(e.target.value))}
         style={{ width: "100%", accentColor: C.terra, height: 30 }} />
     </div>
   );
@@ -3602,7 +3603,7 @@ function App() {
         ) : (
           <>
             <div style={{ border: `1px solid ${C.line}`, borderRadius: 12, overflow: "hidden", marginBottom: 16 }}>
-              <canvas ref={posterRef} width={PW} height={PH}
+              <canvas ref={(node) => { posterRef.current = node; if (node) drawPoster(node); }} width={PW} height={PH}
                 aria-label="Euer Bild"
                 style={{ width: "100%", height: "auto", display: "block" }} />
             </div>
@@ -4087,7 +4088,7 @@ function App() {
         Alles bleibt gespeichert. Kommt in ein paar Monaten zurück, lest euer Manifest und schaut, was inzwischen anders ist. Genau dafür ist dieses Journal gemacht.
       </p>
       <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}>
-        <Btn onClick={() => go(13)}>Zum Manifest</Btn>
+        <Btn onClick={() => go(14)}>Zum Manifest</Btn>
         <Btn variant="ghost" onClick={() => go("toc")}>Zur Übersicht</Btn>
       </div>
 
